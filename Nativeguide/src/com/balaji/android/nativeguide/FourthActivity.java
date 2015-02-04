@@ -24,7 +24,6 @@ public class FourthActivity extends Activity
 		wp4=(EditText)findViewById(R.id.fourthWPText);
 		wp5=(EditText)findViewById(R.id.fifthWPText);
 		wp6=(EditText)findViewById(R.id.sixthWPText);
-		
 	}
 
 	@Override
@@ -34,6 +33,7 @@ public class FourthActivity extends Activity
 		getMenuInflater().inflate(R.menu.activity_fourth, menu);
 		return true;
 	}
+	
 	public void onPause()
 	{
 		super.onPause();
@@ -50,12 +50,11 @@ public class FourthActivity extends Activity
 			wpCount++;
 		if(!wp6.getText().toString().equals(""))
 			wpCount++;
-		
 	}
+	
 	public void moveNext(View view)
 	{
 		Intent intent=new Intent(this,FifthActivity.class);
 		startActivity(intent);
 	}
-
 }
