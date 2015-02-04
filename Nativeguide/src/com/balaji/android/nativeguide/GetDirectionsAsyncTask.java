@@ -21,20 +21,20 @@ public class GetDirectionsAsyncTask extends AsyncTask<Map<String, String>, Objec
     private MapFragmentActivity activity;
     private Exception exception;
     private ProgressDialog progressDialog;
- 
+    
     public GetDirectionsAsyncTask(MapFragmentActivity activity)
     {
         super();
         this.activity = activity;
     }
- 
+    
     public void onPreExecute()
     {
         progressDialog = new ProgressDialog(activity);
         progressDialog.setMessage("Calculating directions");
         progressDialog.show();
     }
- 
+    
     @Override
     public void onPostExecute(ArrayList<LatLng> result)
     {
@@ -48,11 +48,12 @@ public class GetDirectionsAsyncTask extends AsyncTask<Map<String, String>, Objec
             processException();
         }
     }
- 
+    
     @Override
     protected ArrayList<LatLng> doInBackground(Map<String, String>... params)
     {
         Map<String, String> paramMap = params[0];
+        
         try
         {
             LatLng fromPosition = new LatLng(Double.valueOf(paramMap.get(USER_CURRENT_LAT)) , Double.valueOf(paramMap.get(USER_CURRENT_LONG)));
@@ -64,11 +65,10 @@ public class GetDirectionsAsyncTask extends AsyncTask<Map<String, String>, Objec
         }
         catch (Exception e)
         {
-            exception = e;
-            return null;
+            e.printStackTrace();
         }
     }
- 
+    
     private void processException()
     {
         Toast.makeText(activity, activity.getString(R.string.error_when_retrieving_data), Toast.LENGTH_SHORT).show();
